@@ -1,5 +1,5 @@
 ## Androidproject FH Hagenberg 2016
-###### Bernhard Ruckenstuhl | Simon Novak
+###### Bernhard Ruckenstuhl | Simon Nowak
 
 ### About
 Blabla Cards against Humanity
@@ -8,4 +8,4 @@ Blabla Cards against Humanity
 **Direct APK-Download: [Download](http://www.google.at/)**
 
 ### Copyright
-_2017 Bernhard Ruckenstuhl & Simon Novak_
+_2017 Bernhard Ruckenstuhl & Simon Nowak_
