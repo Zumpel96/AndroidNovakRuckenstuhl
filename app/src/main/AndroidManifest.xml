@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BlackCardActivity"></activity>
+        <activity android:name=".BlackCardActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".MainGameActivity"></activity>
     </application>
 
 </manifest>

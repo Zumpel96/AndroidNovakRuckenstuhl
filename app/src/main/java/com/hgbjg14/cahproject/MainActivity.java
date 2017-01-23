@@ -1,5 +1,6 @@
 package com.hgbjg14.cahproject;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -24,100 +25,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MyActivity";
 
-    private String inString = null;
-    private ArrayList<BlackCard> blackCards = new ArrayList<BlackCard>();
-    private ArrayList<String> whiteCards = new ArrayList<String>();
-    private Integer currentWhiteCardCounter = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        Button button = (Button) findViewById(R.id.button);
+        Button button = null;
+        button = (Button) findViewById(R.id.search_game_button);
         button.setOnClickListener(this);
-
-        new LoadCards().execute("base_set");
+        button = (Button) findViewById(R.id.host_game_button);
+        button.setOnClickListener(this);
+        button = (Button) findViewById(R.id.settings_button);
+        button.setOnClickListener(this);
+        button = (Button) findViewById(R.id.about_button);
+        button.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Log.d(TAG, whiteCards.get(currentWhiteCardCounter));
-        currentWhiteCardCounter = (currentWhiteCardCounter + 1) % whiteCards.size();
-    }
-
-
-    private class LoadCards extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... params) {
-            blackCards.clear();
-            whiteCards.clear();
-            for (String param : params) {
-                try {
-
-                    int tempId = getResources().getIdentifier(param, "raw", getPackageName());
-                    String jsonString = GetStringFromRawResource(tempId);
-
-                    JSONObject reader = new JSONObject(jsonString);
-                    JSONArray blackCardsArray = reader.getJSONArray("blackCards");
-                    JSONArray whiteCardsArray = reader.getJSONArray("whiteCards");
-
-                    JSONObject currentObject = null;
-                    int temp = 0;
-                    for (int i = 0; i < blackCardsArray.length(); i++) {
-                        currentObject = blackCardsArray.getJSONObject(i);
-                        blackCards.add(new BlackCard(currentObject.getString("text"), currentObject.getInt("pick")));
-
-                        temp = i;
-                    }
-                    for (int i = 0; i < whiteCardsArray.length(); i ++) {
-                        whiteCards.add(whiteCardsArray.getString(i));
-                        temp = i;
-                    }
-
-                }
-                catch (Exception e) {
-                    Log.d(TAG, e.getMessage());
-                }
+        Intent i = null;
+        switch(v.getId()){
+            case R.id.search_game_button:{
+                i = new Intent(this, MainGameActivity.class);
+                startActivity(i);
             }
-            long seed = System.nanoTime();
-            Collections.shuffle(whiteCards, new Random(seed));
-            Collections.shuffle(blackCards, new Random(seed));
+            break;
+            case R.id.host_game_button:{
 
-            return null;
-        }
-    }
-
-    private String GetStringFromRawResource(int id) {
-        String retString = "";
-        try {
-            InputStream inStream = getResources().openRawResource(id);
-            retString = StreamToString(inStream);
-            inStream.close();
-        }
-        catch (Exception e) {
-
-        }
-
-        return retString;
-    }
-
-    private String StreamToString(InputStream inStream) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
             }
-            reader.close();
+            break;
+            case R.id.settings_button:{
+                i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+            }
+            break;
+            case R.id.about_button:{
+                i = new Intent(this, AboutActivity.class);
+                startActivity(i);
+            }
+            break;
         }
-        catch (Exception e) {
-
-        }
-        return sb.toString();
     }
-
 }
