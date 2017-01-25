@@ -1,6 +1,8 @@
 package com.hgbjg14.cahproject;
 
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +15,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class FindGameActivity extends ListActivity implements View.OnClickListener{
-    private static ArrayList<String> connections = new ArrayList<>();
+public class FindGameActivity extends AppCompatActivity implements View.OnClickListener{
+    private static ArrayList<String> connections;
     private  ArrayAdapter<String> adapter;
 
     @Override
@@ -22,22 +24,20 @@ public class FindGameActivity extends ListActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_game);
 
-        for(int i = 0; i < 20; i++){
-            connections.add("Empty Game " +  i);
-        }
-
         getListData();
-        adapter = new ArrayAdapter<String>(getListView().getContext(), android.R.layout.simple_list_item_1, connections);
-        getListView().setAdapter(adapter);
 
-        final ListView lv = getListView();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, connections);
+
+        ListView lv = (ListView)findViewById(R.id.find_game_list);
+        lv.setAdapter(adapter);
         lv.setClickable(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                String name = (String)lv.getItemAtPosition(position);
-                Log.d("JLK", name);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = String.valueOf(parent.getItemAtPosition(position));
+                Intent i = new Intent(FindGameActivity.this, MainGameActivity.class);
+                startActivity(i);
             }
         });
 
@@ -49,6 +49,8 @@ public class FindGameActivity extends ListActivity implements View.OnClickListen
     }
 
     private void getListData(){
+        connections =  new ArrayList<>();
+        connections.add("Empty Game");
         //MAKE MAGIC
     }
 
