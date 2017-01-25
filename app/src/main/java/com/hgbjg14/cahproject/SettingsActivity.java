@@ -13,7 +13,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_settings);
 
         Button button = null;
-        button = (Button) findViewById(R.id.settings_button);
+        button = (Button)findViewById(R.id.settings_back_button);
         button.setOnClickListener(this);
     }
 

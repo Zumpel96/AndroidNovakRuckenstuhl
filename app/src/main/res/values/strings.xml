@@ -6,8 +6,16 @@
     <string name="search_game_button_text">Spiel suchen</string>
     <string name="host_game_button_text">Spiel eröffnen</string>
     <string name="settings_button_text">Optionen</string>
-    <string name="about_button_text">Über</string>
+    <string name="about_button_text">Über Cards and Humor</string>
     <string name="back_button">Zurück</string>
+    <string name="next_card">Nächste Karte</string>
+    <string name="prev_card">Vorherige Karte</string>
+    <string name="chose_card">Karte Auswählen</string>
+    <string name="submit">Auswahl abschicken</string>
+    <string name="game_name">Spielname</string>
+    <string name="refresh">Aktualisieren</string>
+
+    <string name="about_text">BlaBla</string>
 
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="dummy_button">Dummy Button</string>

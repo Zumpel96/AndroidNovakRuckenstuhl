@@ -47,12 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = null;
         switch(v.getId()){
             case R.id.search_game_button:{
-                i = new Intent(this, MainGameActivity.class);
+                i = new Intent(this, FindGameActivity.class);
                 startActivity(i);
             }
             break;
             case R.id.host_game_button:{
-
+                i = new Intent(this, HostGameActivity.class);
+                startActivity(i);
             }
             break;
             case R.id.settings_button:{

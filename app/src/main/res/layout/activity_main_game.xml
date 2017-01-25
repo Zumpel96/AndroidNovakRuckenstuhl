@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/maingame_current_blackcard"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:paddingBottom="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -23,27 +23,90 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/maingame_current_blackcard">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:id="@+id/maingame_current_whitecard"
+            android:textSize="24sp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_style_normal"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/maingame_current_index"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:text="@string/prev_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_left"
+                    tools:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_style_slim"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" />
+
+                <Button
+                    android:text="@string/next_card"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_right"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/border_style_slim"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/maingame_selected_answers"
+                android:textSize="18sp"
+                android:textAlignment="center"
+                android:textStyle="normal|bold" />
 
             <Button
-                android:text="Button"
-                android:layout_width="wrap_content"
+                android:text="@string/chose_card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
-                android:layout_weight="1" />
+                android:id="@+id/button_chose"
+                android:background="@drawable/border_style_slim"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
 
             <Button
-                android:text="Button"
-                android:layout_width="wrap_content"
+                android:text="@string/submit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button"
-                android:layout_weight="1" />
+                android:background="@drawable/border_style_slim"
+                android:layout_marginTop="5dp"
+                android:id="@+id/button_submit" />
+
         </LinearLayout>
 
     </LinearLayout>

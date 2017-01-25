@@ -22,13 +22,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/settings_header"
             android:textSize="30sp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:text="@string/back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/settings_back_button"
-            android:elevation="0dp" />
+            android:elevation="0dp"
+            android:background="@drawable/border_style_slim" />
     </LinearLayout>
 </RelativeLayout>
