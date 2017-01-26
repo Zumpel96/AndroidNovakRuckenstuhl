@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/backgroundColor"
     tools:context="com.hgbjg14.cahproject.MainActivity">
 
     <LinearLayout
@@ -30,7 +31,7 @@
                 android:id="@+id/logo_image"
                 android:adjustViewBounds="true"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/logo"
+                app:srcCompat="@drawable/logo"
                 android:scaleType="fitCenter"/>
         </LinearLayout>
 
