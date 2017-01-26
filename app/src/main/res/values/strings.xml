@@ -2,18 +2,22 @@
     <string name="app_name">CaHProject</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="search_game_button_text">Spiel Starten</string>
-    <string name="about_button_text">Über Bots Against Humanity</string>
-    <string name="back_button">Zurück</string>
-    <string name="next_card">Nächste Karte</string>
-    <string name="prev_card">Vorherige Karte</string>
-    <string name="chose_card">Karte Auswählen</string>
-    <string name="chose_winner">Sieger Auswählen</string>
-    <string name="submit">Auswahl abschicken</string>
-    <string name="waiting_for_other_players">Warte auf andere Spieler</string>
-    <string name="waiting_for_winner">Ergebnis wird berechnet</string>
-    <string name="next">Weiter</string>
-    <string name="ranking">Rangliste</string>
+    <string name="search_game_button_text">Start Game</string>
+    <string name="about_button_text">About Bots Against Humanity</string>
+    <string name="back_button">Back</string>
+    <string name="next_card">Next Card</string>
+    <string name="prev_card">Previous Card</string>
+    <string name="chose_card">Pick Card</string>
+    <string name="chose_winner">Pick Winner</string>
+    <string name="submit">Submit Pick</string>
+    <string name="waiting_for_other_players">Waiting For Other Players</string>
+    <string name="waiting_for_winner">Calculating Results</string>
+    <string name="next">Next</string>
+    <string name="ranking">Ranking</string>
 
-    <string name="about_text">BlaBla</string>
+    <string name="about_text">This app was created by Bernhard Ruckenstuhl and Simon Nowak.\n
+        The cards used are owned by Cards Against Humanity and
+        are available under a BY-NC-SA 2.0 Creative Commons license.\n
+        All credits for the cards and the base game idea go to Cards Against Humanity.\n
+        (https://cardsagainsthumanity.com)</string>
 </resources>
