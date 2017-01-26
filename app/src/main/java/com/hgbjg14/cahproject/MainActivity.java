@@ -101,9 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             break;
             case R.id.settings_button:{
-                //i = new Intent(this, SettingsActivity.class);
-                //startActivity(i);
-                getListData();
+                i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
             }
             break;
             case R.id.about_button:{
@@ -112,32 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             break;
         }
-    }
-
-    private static ArrayList<String> connections;
-
-    private void getListData(){
-        connections =  new ArrayList<>();
-        connections.add("Empty Game");
-        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-
-            @Override
-            public void onSuccess() {
-                // Code for when the discovery initiation is successful goes here.
-                // No services have actually been discovered yet, so this method
-                // can often be left blank.  Code for peer discovery goes in the
-                // onReceive method, detailed below.
-
-                Log.d(MainActivity.TAG, "success");
-            }
-
-            @Override
-            public void onFailure(int reasonCode) {
-                // Code for when the discovery initiation fails goes here.
-                // Alert the user that something went wrong.
-                Log.d(MainActivity.TAG, "failure");
-            }
-        });
     }
 
     public void onResume() {
