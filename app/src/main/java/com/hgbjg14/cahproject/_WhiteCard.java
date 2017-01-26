@@ -2,10 +2,10 @@ package com.hgbjg14.cahproject;
 
 public class _WhiteCard {
     public String text;
-    public int playerId;
+    public String playerName;
 
-    _WhiteCard(String text, int playerId) {
+    _WhiteCard(String text, String playerName) {
         this.text = text;
-        this.playerId = playerId;
+        this.playerName = playerName;
     }
 }

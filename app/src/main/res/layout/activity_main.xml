@@ -45,24 +45,6 @@
             android:layout_marginBottom="5dp" />
 
         <Button
-            android:text="@string/host_game_button_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/host_game_button"
-            android:background="@drawable/border_style_slim"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp" />
-
-        <Button
-            android:text="@string/settings_button_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/settings_button"
-            android:background="@drawable/border_style_slim"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp" />
-
-        <Button
             android:text="@string/about_button_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

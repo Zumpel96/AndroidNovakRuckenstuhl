@@ -11,22 +11,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class AboutActivity extends Fragment implements View.OnClickListener  {
+public class AboutActivity extends AppCompatActivity implements View.OnClickListener  {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentActivity faActivity = (FragmentActivity)super.getActivity();
-
-        RelativeLayout rlLayout = (RelativeLayout)inflater.inflate(R.layout.activity_about, container, false);
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about);
         Button button = null;
-        button = (Button)rlLayout.findViewById(R.id.about_back_button);
+        button = (Button)findViewById(R.id.about_back_button);
         button.setOnClickListener(this);
-        return rlLayout;
     }
 
     @Override
     public void onClick(View v) {
-
+        finish();
     }
 }

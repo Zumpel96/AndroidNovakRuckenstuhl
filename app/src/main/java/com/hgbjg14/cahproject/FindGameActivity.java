@@ -67,7 +67,6 @@ public class FindGameActivity extends AppCompatActivity implements View.OnClickL
         button.setOnClickListener(this);
         button = (Button)findViewById(R.id.find_game_back_button);
         button.setOnClickListener(this);
-        Log.d(MainActivity.TAG, MainActivity.testString);
     }
 
     private void getListData(){

@@ -37,6 +37,9 @@
         <activity android:name=".WaitingHostActivity" />
         <activity android:name=".WaitingSelectorActivity" />
         <activity android:name=".SelectorActivity" />
+        <activity android:name=".WaitingWinnerActivity" />
+        <activity android:name=".WinnerCardActivity" />
+        <activity android:name=".RankingActivity"></activity>
     </application>
 
 </manifest>

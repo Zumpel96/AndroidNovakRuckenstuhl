@@ -133,7 +133,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
             break;
             case R.id.selector_button_submit:{
                 if(chosenCards != null){
-                    int winner = chosenCards.get(0).playerId;
+                    String winner = chosenCards.get(0).playerName;
                     //DO MAGIC
                     Toast.makeText(this, "Magix! (Btw... " + winner + " won this round xd", Toast.LENGTH_SHORT).show();
                 } else {
@@ -166,7 +166,7 @@ public class SelectorActivity extends AppCompatActivity implements View.OnClickL
         for(int i = 0; i < numberOfPlayers - 1; i++){
             ArrayList<_WhiteCard> tempList = new ArrayList<>();
             for(int j = 0; j < currentBlackCard.pick; j++){
-                tempList.add(new _WhiteCard(whiteCards.get(currentWhiteCardCounter), i));
+                tempList.add(new _WhiteCard(MainActivity.whiteCards.get(currentWhiteCardCounter), "You"));
                 currentWhiteCardCounter = (currentWhiteCardCounter + 1) % whiteCards.size();
             }
             playerCards.add(tempList);
