@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // No services have actually been discovered yet, so this method
                 // can often be left blank.  Code for peer discovery goes in the
                 // onReceive method, detailed below.
+
                 Log.d(MainActivity.TAG, "success");
             }
 
