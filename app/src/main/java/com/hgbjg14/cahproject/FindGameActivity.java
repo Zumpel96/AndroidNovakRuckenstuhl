@@ -81,14 +81,14 @@ public class FindGameActivity extends AppCompatActivity implements View.OnClickL
                 // No services have actually been discovered yet, so this method
                 // can often be left blank.  Code for peer discovery goes in the
                 // onReceive method, detailed below.
-                Log.d(MainActivity.TAG, "success");
+                Log.d(MainActivity.TAG, "discover peers successful");
             }
 
             @Override
             public void onFailure(int reasonCode) {
                 // Code for when the discovery initiation fails goes here.
                 // Alert the user that something went wrong.
-                Log.d(MainActivity.TAG, "failure");
+                Log.d(MainActivity.TAG, "discover peers failed");
             }
         });
     }
