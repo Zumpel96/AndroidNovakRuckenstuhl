@@ -66,8 +66,10 @@ public class CaHBroadcastReceiver extends BroadcastReceiver {
             }
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
 
+            Log.d(MainActivity.TAG, "come on!");
             if(this.manager != null) {
-                this.manager.requestPeers(this.channel, (PeerListListener)this.activity.getFragmentManager().findFragmentById(R.layout.fragment_item_list));
+                this.manager.requestPeers(this.channel, peerListListener);
+                //this.activity.getFragmentManager().findFragmentById(R.layout.activity_find_game)
             }
 
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
@@ -83,4 +85,31 @@ public class CaHBroadcastReceiver extends BroadcastReceiver {
 
         }
     }
+
+
+    private PeerListListener peerListListener = new PeerListListener() {
+        @Override
+        public void onPeersAvailable(WifiP2pDeviceList peerList) {
+
+            List<WifiP2pDevice> refreshedPeers = new ArrayList<>(peerList.getDeviceList());
+            if (!refreshedPeers.equals(peers)) {
+                peers.clear();
+                peers.addAll(refreshedPeers);
+
+                // If an AdapterView is backed by this data, notify it
+                // of the change.  For instance, if you have a ListView of
+                // available peers, trigger an update.
+                //((WiFiPeerListAdapter) getListAdapter()).notifyDataSetChanged();
+
+                // Perform any other updates needed based on the new list of
+                // peers connected to the Wi-Fi P2P network.
+            }
+
+            if (peers.size() == 0) {
+                Log.d(MainActivity.TAG, "No devices found");
+                return;
+            }
+            Log.d(MainActivity.TAG, "yay");
+        }
+    };
 }
