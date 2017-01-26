@@ -36,7 +36,7 @@ public class FindGameActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = String.valueOf(parent.getItemAtPosition(position));
-                Intent i = new Intent(FindGameActivity.this, MainGameActivity.class);
+                Intent i = new Intent(FindGameActivity.this, WaitingGeneralActivity.class);
                 startActivity(i);
             }
         });

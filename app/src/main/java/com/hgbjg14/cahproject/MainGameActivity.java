@@ -1,14 +1,11 @@
 package com.hgbjg14.cahproject;
 
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,42 +23,43 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
 
     private static final String TAG = "CAH";
 
-    private String inString = null;
-    private ArrayList<BlackCard> blackCards = new ArrayList<BlackCard>();
-    private BlackCard currentBlackCard;
+    //DUMMY DATA WHICH WE NORMALLY GET FROM HOST
+    private ArrayList<_BlackCard> blackCards = new ArrayList<_BlackCard>();
     private ArrayList<String> whiteCards = new ArrayList<String>();
-    private ArrayList<String> playerCards = new ArrayList<String>();
     private Integer currentWhiteCardCounter = 0;
     private Integer currentBlackCardCounter = 0;
+
+    //ACTUAL PLAYER DATA
+    private _BlackCard currentBlackCard;
+    private ArrayList<String> playerCards = new ArrayList<String>();
     private Integer currentShownWhiteCard = 0;
+    private Integer playerId = 0;
     private ArrayList<String> chosenCards = new ArrayList<>();
+
+    private void getDataFromHost(){
+        doHostStuff();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
 
-        loadCards("base_set");
+        //Init
+        getDataFromHost();
 
+        //Set Blackcard
         TextView tv = (TextView)findViewById(R.id.maingame_current_blackcard);
         tv.setBackgroundColor(Color.BLACK);
         tv.setTextColor(Color.WHITE);
-
-        currentBlackCard = blackCards.get(currentBlackCardCounter);
         tv.setText(currentBlackCard.text);
-        Log.d(TAG, String.valueOf(currentBlackCard.pick));
 
-        currentBlackCardCounter = (currentBlackCardCounter + 1) % blackCards.size();
-
-        for(int i = 0; i < 10; i++){
-            playerCards.add(whiteCards.get(currentWhiteCardCounter));
-            currentWhiteCardCounter = (currentWhiteCardCounter + 1) % blackCards.size();
-        }
-
+        //Set Whitecard
         TextView ptv = (TextView)findViewById(R.id.maingame_current_whitecard);
         ptv.setText(playerCards.get(currentShownWhiteCard));
         ptv.setTextColor(Color.BLACK);
 
+        //Set Card Index
         TextView itv = (TextView)findViewById(R.id.maingame_current_index);
         itv.setText("Karte " + (currentShownWhiteCard + 1) + " von " + "10");
 
@@ -92,6 +90,8 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         TextView ptv = (TextView)findViewById(R.id.maingame_current_whitecard);
         resetBorder();
+        TextView satv = (TextView)findViewById(R.id.maingame_selected_answers);
+        satv.setText(chosenCards.size() + " von " + currentBlackCard.pick + " Antworten ausgewählt");
         switch(v.getId()) {
             case R.id.button_left: {
                 if(currentShownWhiteCard == 0){
@@ -117,21 +117,24 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
                     if(chosenCards.size() < currentBlackCard.pick){
                         chosenCards.add(playerCards.get(currentShownWhiteCard));
                     } else {
-                        Toast.makeText(this, "Maximale Antwortenanzahl!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Maximale Antwortenanzahl!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             break;
             case R.id.button_submit:{
-                //DO MAGIC
-
-                //playerCards.remove(currentShownWhiteCard);
-                //playerCards.add(whiteCards.get(currentWhiteCardCounter));
-                //currentWhiteCardCounter = (currentWhiteCardCounter + 1) % blackCards.size();
+                if(chosenCards.size() == currentBlackCard.pick){
+                    ArrayList<_WhiteCard> submitCards = new ArrayList<>();
+                    for(String card:chosenCards){
+                        submitCards.add(new _WhiteCard(card, this.playerId));
+                    }
+                    //DO MAGIC
+                } else {
+                    Toast.makeText(this, "Zu wenig Antworten!", Toast.LENGTH_SHORT).show();
+                }
             }
             break;
         }
-        TextView satv = (TextView)findViewById(R.id.maingame_selected_answers);
         satv.setText(chosenCards.size() + " von " + currentBlackCard.pick + " Antworten ausgewählt");
 
         ptv.setText(playerCards.get(currentShownWhiteCard));
@@ -145,6 +148,17 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
 
         generateBorder();
 
+    }
+
+    private void doHostStuff(){
+        loadCards("base_set");
+        currentBlackCard = blackCards.get(currentBlackCardCounter);
+        currentBlackCardCounter = (currentBlackCardCounter + 1) % blackCards.size();
+
+        for(int i = 0; i < 10; i++){
+            playerCards.add(whiteCards.get(currentWhiteCardCounter));
+            currentWhiteCardCounter = (currentWhiteCardCounter + 1) % blackCards.size();
+        }
     }
 
     private void loadCards(String... params){
@@ -164,7 +178,7 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
                 int temp = 0;
                 for (int i = 0; i < blackCardsArray.length(); i++) {
                     currentObject = blackCardsArray.getJSONObject(i);
-                    blackCards.add(new BlackCard(currentObject.getString("text"), currentObject.getInt("pick")));
+                    blackCards.add(new _BlackCard(currentObject.getString("text"), currentObject.getInt("pick")));
 
                     temp = i;
                 }

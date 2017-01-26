@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,7 +25,7 @@ public class CardView extends AppCompatActivity implements View.OnClickListener 
     private static final String TAG = "MyActivity";
 
     private String inString = null;
-    private ArrayList<BlackCard> blackCards = new ArrayList<BlackCard>();
+    private ArrayList<_BlackCard> blackCards = new ArrayList<_BlackCard>();
     private ArrayList<String> whiteCards = new ArrayList<String>();
     private Integer currentWhiteCardCounter = 0;
 
@@ -67,7 +66,7 @@ public class CardView extends AppCompatActivity implements View.OnClickListener 
                     int temp = 0;
                     for (int i = 0; i < blackCardsArray.length(); i++) {
                         currentObject = blackCardsArray.getJSONObject(i);
-                        blackCards.add(new BlackCard(currentObject.getString("text"), currentObject.getInt("pick")));
+                        blackCards.add(new _BlackCard(currentObject.getString("text"), currentObject.getInt("pick")));
 
                         temp = i;
                     }

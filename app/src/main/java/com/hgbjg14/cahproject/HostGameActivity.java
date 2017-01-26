@@ -1,5 +1,6 @@
 package com.hgbjg14.cahproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +30,8 @@ public class HostGameActivity extends AppCompatActivity implements View.OnClickL
                 if( gamename.getText().toString().trim().equals("")){
                     Toast.makeText(this, "Spielname wird benötigt!", Toast.LENGTH_LONG).show();
                 } else {
-
+                    Intent i = new Intent(HostGameActivity.this, WaitingHostActivity.class);
+                    startActivity(i);
                 }
             }
             break;
