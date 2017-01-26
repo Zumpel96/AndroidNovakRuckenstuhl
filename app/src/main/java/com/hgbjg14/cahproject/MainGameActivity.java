@@ -1,5 +1,6 @@
 package com.hgbjg14.cahproject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -129,6 +130,9 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
                         submitCards.add(new _WhiteCard(card, this.playerId));
                     }
                     //DO MAGIC
+
+                    Intent i = new Intent(MainGameActivity.this, SelectorActivity.class);
+                    startActivity(i);
                 } else {
                     Toast.makeText(this, "Zu wenig Antworten!", Toast.LENGTH_SHORT).show();
                 }

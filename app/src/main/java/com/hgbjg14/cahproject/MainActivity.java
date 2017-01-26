@@ -36,40 +36,14 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ChannelListener {
 
     public static final String TAG = "MyActivity";
+    public static final int PORT = 11111;
     private WifiP2pManager manager;
     private boolean isWifiP2pEnabled = false;
     private boolean retryChannel = false;
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
     private BroadcastReceiver receiver = null;
-
-    /*
-    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
-
-    private PeerListListener peerListListener = new PeerListListener() {
-        @Override
-        public void onPeersAvailable(WifiP2pDeviceList peerList) {
-
-            List<WifiP2pDevice> refreshedPeers = peerList.getDeviceList();
-            if (!refreshedPeers.equals(peers)) {
-                peers.clear();
-                peers.addAll(refreshedPeers);
-
-                // If an AdapterView is backed by this data, notify it
-                // of the change.  For instance, if you have a ListView of
-                // available peers, trigger an update.
-                //((WiFiPeerListAdapter) getListAdapter()).notifyDataSetChanged();
-
-                // Perform any other updates needed based on the new list of
-                // peers connected to the Wi-Fi P2P network.
-            }
-
-            if (peers.size() == 0) {
-                Log.d(MainActivity.TAG, "No devices found");
-                return;
-            }
-        }
-    }*/
+    public static String testString = "hi";
 
     public MainActivity() {
     }
@@ -83,12 +57,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.intentFilter.addAction("android.net.wifi.p2p.STATE_CHANGED");
-        this.intentFilter.addAction("android.net.wifi.p2p.PEERS_CHANGED");
-        this.intentFilter.addAction("android.net.wifi.p2p.CONNECTION_STATE_CHANGE");
-        this.intentFilter.addAction("android.net.wifi.p2p.THIS_DEVICE_CHANGED");
+        //  Indicates a change in the Wi-Fi P2P status.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+
+        // Indicates a change in the list of available peers.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+
+        // Indicates the state of Wi-Fi P2P connectivity has changed.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+
+        // Indicates this device's details have changed.
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
         this.manager = (WifiP2pManager)this.getSystemService(Context.WIFI_P2P_SERVICE);
         this.channel = this.manager.initialize(this, this.getMainLooper(), (ChannelListener)null);
+
+        receiver = new CaHBroadcastReceiver(manager, channel, this);
+        registerReceiver(receiver, intentFilter);
 
         Button button = null;
         button = (Button) findViewById(R.id.search_game_button);
@@ -99,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
         button = (Button) findViewById(R.id.about_button);
         button.setOnClickListener(this);
+        testString = "hallo";
     }
 
     @Override
@@ -116,8 +101,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             break;
             case R.id.settings_button:{
-                i = new Intent(this, SettingsActivity.class);
-                startActivity(i);
+                //i = new Intent(this, SettingsActivity.class);
+                //startActivity(i);
+                getListData();
             }
             break;
             case R.id.about_button:{
@@ -126,6 +112,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             break;
         }
+    }
+
+    private static ArrayList<String> connections;
+
+    private void getListData(){
+        connections =  new ArrayList<>();
+        connections.add("Empty Game");
+        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+
+            @Override
+            public void onSuccess() {
+                // Code for when the discovery initiation is successful goes here.
+                // No services have actually been discovered yet, so this method
+                // can often be left blank.  Code for peer discovery goes in the
+                // onReceive method, detailed below.
+
+                Log.d(MainActivity.TAG, "success");
+            }
+
+            @Override
+            public void onFailure(int reasonCode) {
+                // Code for when the discovery initiation fails goes here.
+                // Alert the user that something went wrong.
+                Log.d(MainActivity.TAG, "failure");
+            }
+        });
     }
 
     public void onResume() {
