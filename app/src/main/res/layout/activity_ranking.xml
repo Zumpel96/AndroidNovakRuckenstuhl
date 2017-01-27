@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ranking_header"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
+                android:textSize="36sp"
                 android:textAlignment="center" />
 
             <ListView
