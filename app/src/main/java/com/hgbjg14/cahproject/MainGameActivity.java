@@ -42,6 +42,11 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);

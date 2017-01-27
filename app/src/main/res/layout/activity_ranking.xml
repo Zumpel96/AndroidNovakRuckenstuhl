@@ -16,22 +16,29 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
-        <TextView
-            android:text="@string/ranking"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ranking_header"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textAlignment="center" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="376dp"
-            android:layout_weight="0.76"
-            android:id="@+id/ranking_list"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp" />
+            <TextView
+                android:text="@string/ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ranking_header"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textAlignment="center" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/ranking_list"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
 
         <Button
             android:text="@string/next"
@@ -40,7 +47,9 @@
             android:id="@+id/ranking_next_button"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/border_style_slim" />
+            android:background="@drawable/border_style_slim"
+            android:layout_weight="0"
+            android:layout_gravity="bottom|center" />
 
     </LinearLayout>
 

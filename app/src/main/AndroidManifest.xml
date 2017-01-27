@@ -28,18 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".MainGameActivity" />
-        <activity android:name=".HostGameActivity" />
-        <activity android:name=".FindGameActivity" />
-        <activity android:name=".WaitingGeneralActivity" />
-        <activity android:name=".WaitingHostActivity" />
-        <activity android:name=".WaitingSelectorActivity" />
-        <activity android:name=".SelectorActivity" />
-        <activity android:name=".WaitingWinnerActivity" />
-        <activity android:name=".WinnerCardActivity" />
-        <activity android:name=".RankingActivity"></activity>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".MainGameActivity" android:noHistory="true"/>
+        <activity android:name=".WaitingGeneralActivity" android:noHistory="true"/>
+        <activity android:name=".WaitingWinnerActivity" android:noHistory="true"/>
+        <activity android:name=".WinnerCardActivity" android:noHistory="true"/>
+        <activity android:name=".RankingActivity" android:noHistory="true"/>
     </application>
 
 </manifest>

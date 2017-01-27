@@ -17,13 +17,15 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.90">
+            android:layout_weight="0">
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -32,26 +34,35 @@
                 android:adjustViewBounds="true"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/logo"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:paddingTop="0dp" />
         </LinearLayout>
 
-        <Button
-            android:text="@string/search_game_button_text"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/search_game_button"
-            android:background="@drawable/border_style_slim"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom|center">
 
-        <Button
-            android:text="@string/about_button_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/about_button"
-            android:background="@drawable/border_style_slim"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
+            <Button
+                android:text="@string/search_game_button_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_game_button"
+                android:background="@drawable/border_style_slim"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <Button
+                android:text="@string/about_button_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/about_button"
+                android:background="@drawable/border_style_slim"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

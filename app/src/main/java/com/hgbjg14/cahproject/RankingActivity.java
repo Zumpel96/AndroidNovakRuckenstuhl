@@ -18,6 +18,11 @@ import static java.util.Collections.addAll;
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
