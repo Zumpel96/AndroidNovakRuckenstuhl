@@ -40,7 +40,7 @@ public class WinnerCardActivity extends AppCompatActivity implements View.OnClic
         ptv.setTextColor(Color.BLACK);
 
         TextView wtv = (TextView)findViewById(R.id.winner_owner);
-        wtv.setText("Rundensieger: " + MainActivity.winningCards.get(0).playerName);
+        wtv.setText("Best Card: " + MainActivity.winningCards.get(0).playerName);
 
         Button button = null;
         button = (Button)findViewById(R.id.winner_next_button);

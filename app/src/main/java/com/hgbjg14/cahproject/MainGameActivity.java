@@ -67,7 +67,10 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
 
         //Set Card Index
         TextView itv = (TextView)findViewById(R.id.maingame_current_index);
-        itv.setText("Karte " + (currentShownWhiteCard + 1) + " von " + "10");
+        itv.setText("Card " + (currentShownWhiteCard + 1) + " of " + "10");
+
+        TextView satv = (TextView)findViewById(R.id.maingame_selected_answers);
+        satv.setText(chosenCards.size() + " of " + currentBlackCard.pick + " Answers picked");
 
         Button button = null;
         button = (Button)findViewById(R.id.button_left);
@@ -96,8 +99,6 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         TextView ptv = (TextView)findViewById(R.id.maingame_current_whitecard);
         resetBorder();
-        TextView satv = (TextView)findViewById(R.id.maingame_selected_answers);
-        satv.setText(chosenCards.size() + " von " + currentBlackCard.pick + " Antworten ausgewählt");
         switch(v.getId()) {
             case R.id.button_left: {
                 if(currentShownWhiteCard == 0){
@@ -123,7 +124,7 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
                     if(chosenCards.size() < currentBlackCard.pick){
                         chosenCards.add(MainActivity.playerCards.get(currentShownWhiteCard));
                     } else {
-                        Toast.makeText(this, "Maximale Antwortenanzahl!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Too many Answers!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -157,20 +158,21 @@ public class MainGameActivity extends AppCompatActivity implements View.OnClickL
                     Intent i = new Intent(MainGameActivity.this, WaitingWinnerActivity.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(this, "Zu wenig Antworten!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Not enough Answers picked!", Toast.LENGTH_SHORT).show();
                 }
             }
             break;
         }
-        satv.setText(chosenCards.size() + " von " + currentBlackCard.pick + " Antworten ausgewählt");
+        TextView satv = (TextView)findViewById(R.id.maingame_selected_answers);
+        satv.setText(chosenCards.size() + " of " + currentBlackCard.pick + " Answers picked");
 
         ptv.setText(MainActivity.playerCards.get(currentShownWhiteCard));
 
         TextView itv = (TextView)findViewById(R.id.maingame_current_index);
         if(chosenCards.contains(MainActivity.playerCards.get(currentShownWhiteCard))){
-            itv.setText("Karte " + (currentShownWhiteCard + 1) + " von " + "10 (" + (chosenCards.indexOf(MainActivity.playerCards.get(currentShownWhiteCard)) + 1) + ")");
+            itv.setText("Card " + (currentShownWhiteCard + 1) + " of " + "10 (" + (chosenCards.indexOf(MainActivity.playerCards.get(currentShownWhiteCard)) + 1) + ")");
         } else {
-            itv.setText("Karte " + (currentShownWhiteCard + 1) + " von " + "10");
+            itv.setText("Card " + (currentShownWhiteCard + 1) + " of " + "10");
         }
 
         generateBorder();
